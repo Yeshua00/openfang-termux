@@ -18,13 +18,6 @@ import androidx.core.content.ContextCompat
 import android.app.Activity
 import android.content.Context
 import android.hardware.Sensor
-import io.flutter.embedding.android.FlutterActivity
-import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.plugin.common.EventChannel
-import io.flutter.plugin.common.MethodChannel
-import java.io.File
-import java.io.FileOutputStream
-
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -407,39 +400,7 @@ class MainActivity : FlutterActivity() {
                         }
                     }.start()
                 }
-                "writeAssetFile" -> {
-                    val assetPath = call.argument<String>("assetPath")
-                    val destPath = call.argument<String>("destPath")
-                    val dataList = call.argument<ArrayList<Int>>("data")?.map { it.toByte() }?.toByteArray()
-                    
-                    if (assetPath != null && destPath != null && dataList != null) {
-                        Thread {
-                            try {
-                                // Get the asset from Flutter's asset bundle
-                                val assetKey = assetPath.removePrefix("assets/")
-                                val assetStream = assets.open(assetKey)
-                                val destFile = File(destPath)
-                                destFile.parentFile?.mkdirs()
-                                
-                                FileOutputStream(destFile).use { fos ->
-                                    val buffer = ByteArray(8192)
-                                    var bytes: Int
-                                    while (assetStream.read(buffer).also { bytes = it } != -1) {
-                                        fos.write(buffer, 0, bytes)
-                                    }
-                                }
-                                destFile.setExecutable(true, false)
-                                
-                                runOnUiThread { result.success(true) }
-                            } catch (e: Exception) {
-                                runOnUiThread { result.error("ASSET_ERROR", e.message, null) }
-                            }
-                        }.start()
-                    } else {
-                        result.error("INVALID_ARGS", "assetPath, destPath, and data required", null)
-                    }
-                }
-
+                else -> {
                     result.notImplemented()
                 }
             }
