@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+
+# Flutter build output
+flutter_app/build/
+flutter_app/.dart_tool/
+flutter_app/.flutter-plugins*
+flutter_app/.flutter-plugins-dependencies
+flutter_app/.packages
+
+# Android build
+flutter_app/android/.gradle/
+flutter_app/android/app/build/
+
+# Misc
+.DS_Store
+*.log
+.env
+
+# Source folders we don't need (not part of the app)
+openfang-source/
+"source files"/
+docs/
+scripts/
+bin/
+assets/
+install.sh
+BUILD_INSTRUCTIONS.md
+TRANSMUTATION_SUMMARY.md
+package.json
+package-lock.json
+eslint.config.js
+
+# Keep README files in flutter_app
+!flutter_app/README_TRANSMUTATION.md
+!flutter_app/TRANSMUTATION_COMPLETE.md
+
+# Keep main README and LICENSE
+!README.md
+!LICENSE
+*.log
+.DS_Store
+.env
+.env.local
+*.tgz
+coverage/
+.nyc_output/
+
+# Android signing
+flutter_app/android/key.properties
+*.jks
+*.keystore
