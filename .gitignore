@@ -16,35 +16,29 @@ flutter_app/android/app/build/
 .DS_Store
 *.log
 .env
-
-# Source folders we don't need (not part of the app)
-openfang-source/
-"source files"/
-docs/
-scripts/
-bin/
-assets/
-install.sh
-BUILD_INSTRUCTIONS.md
-TRANSMUTATION_SUMMARY.md
-package.json
-package-lock.json
-eslint.config.js
-
-# Keep README files in flutter_app
-!flutter_app/README_TRANSMUTATION.md
-!flutter_app/TRANSMUTATION_COMPLETE.md
-
-# Keep main README and LICENSE
-!README.md
-!LICENSE
-*.log
-.DS_Store
-.env
 .env.local
 *.tgz
 coverage/
 .nyc_output/
+
+# Source folders we don't need (not part of the app)
+openfang-source/
+source files/
+assets/
+BUILD_INSTRUCTIONS.md
+TRANSMUTATION_SUMMARY.md
+
+# Keep main files
+!README.md
+!LICENSE
+!package.json
+!package-lock.json
+!eslint.config.js
+!install.sh
+!bin/
+!docs/
+!scripts/
+!.npmignore
 
 # Android signing
 flutter_app/android/key.properties
