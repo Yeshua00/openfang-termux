@@ -63,10 +63,6 @@ class NativeBridge {
   }
 
   static Future<bool> writeResolv() async {
-    return await _channel.invokeMethod('installOpenFang');
-  }
-
-  static Future<bool> writeResolv() async {
     return await _channel.invokeMethod('installBionicBypass');
   }
 
