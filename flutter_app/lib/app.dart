@@ -35,7 +35,7 @@ class AppColors {
 }
 
 class OpenFangApp extends StatelessWidget {
-  const OpenFangApp({super.key});
+
   const OpenFangApp({super.key});
 
   @override
