@@ -63,10 +63,6 @@ class NativeBridge {
   }
 
   static Future<bool> writeResolv() async {
-    return await _channel.invokeMethod('installBionicBypass');
-  }
-
-  static Future<bool> writeResolv() async {
     return await _channel.invokeMethod('writeResolv');
   }
 
@@ -111,10 +107,10 @@ class NativeBridge {
   }
 
   static Future<bool> requestBatteryOptimization() async {
-    return await _channel.invokeMethod('requestBatteryOptimization');
+    return await _channel.invokeMethod('requestBattery  static Future<boolOptimization');
   }
 
-  static Future<bool> isBatteryOptimized() async {
+> isBatteryOptimized() async {
     return await _channel.invokeMethod('isBatteryOptimized');
   }
 

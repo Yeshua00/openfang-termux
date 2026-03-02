@@ -83,7 +83,8 @@ class BootstrapService {
             final totalMb = (total / 1024 / 1024).toStringAsFixed(1);
             // Map download to 5-30% of overall progress
             final notifProgress = 5 + (progress * 25).round();
-            _updateSetupNotification('Downloading rootfs: $mb / $totalMb MB', progress: notifProgress);
+            _updateSetupNotification('Downloading rootfs: $mb / $totalMb MB',
+                progress: notifProgress);
             onProgress(SetupState(
               step: SetupStep.downloadingRootfs,
               progress: progress,
@@ -195,7 +196,8 @@ class BootstrapService {
             final totalMb = (total / 1024 / 1024).toStringAsFixed(1);
             // Map Node download to 55-70% of overall
             final notifProgress = 55 + ((received / total) * 15).round();
-            _updateSetupNotification('Downloading Node.js: $mb / $totalMb MB', progress: notifProgress);
+            _updateSetupNotification('Downloading Node.js: $mb / $totalMb MB',
+                progress: notifProgress);
             onProgress(SetupState(
               step: SetupStep.installingNode,
               progress: progress,
@@ -234,12 +236,12 @@ class BootstrapService {
         message: 'Node.js installed',
       ));
 
-      // Step 4: Install OpenFang (80-98%)
+      // Step 4: Install OpenFang from prebuilt binary (80-98%)
       _updateSetupNotification('Installing OpenFang...', progress: 82);
       onProgress(const SetupState(
         step: SetupStep.installingOpenFang,
         progress: 0.0,
-        message: 'Installing OpenFang (this may take a few minutes)...',
+        message: 'Installing OpenFang from assets...',
       ));
       // Install OpenFang from prebuilt binary in assets
       await NativeBridge.installOpenFang();
@@ -250,37 +252,9 @@ class BootstrapService {
         progress: 0.7,
         message: 'Verifying OpenFang...',
       ));
-      await NativeBridge.runInProot('openfang --version || echo openfang_installed');
-      _updateSetupNotification('Installing OpenClaw...', progress: 82);
-      onProgress(const SetupState(
-        step: SetupStep.installingOpenFang,
-        progress: 0.0,
-        message: 'Installing OpenClaw (this may take a few minutes)...',
-      ));
-      // Install openclaw — fork/exec works now with our Termux-matching proot.
+      // OpenFang binary is installed from assets - verify it's executable
       await NativeBridge.runInProot(
-        '$nodeRun $npmCli install -g openclaw',
-        timeout: 1800,
-      );
-
-      _updateSetupNotification('Creating bin wrappers...', progress: 92);
-      onProgress(const SetupState(
-        step: SetupStep.installingOpenFang,
-        progress: 0.7,
-        message: 'Creating bin wrappers...',
-      ));
-      // npm global install creates symlinks for bin entries, but symlinks
-      // can fail silently in proot. Create shell wrappers from Java side
-      // (reads package.json directly from rootfs filesystem — no escaping).
-      await NativeBridge.createBinWrappers('openclaw');
-
-      _updateSetupNotification('Verifying OpenClaw...', progress: 96);
-      onProgress(const SetupState(
-        step: SetupStep.installingOpenFang,
-        progress: 0.9,
-        message: 'Verifying OpenClaw...',
-      ));
-      await NativeBridge.runInProot('openclaw --version || echo openclaw_installed');
+          'openfang --version || echo openfang_installed');
       onProgress(const SetupState(
         step: SetupStep.installingOpenFang,
         progress: 1.0,
