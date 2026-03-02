@@ -209,25 +209,6 @@ class MainActivity : FlutterActivity() {
                 "writeResolv" -> {
                     Thread {
                         try {
-                            bootstrapManager.installOpenFangFromAssets(applicationContext)
-                            runOnUiThread { result.success(true) }
-                        } catch (e: Exception) {
-                            runOnUiThread { result.error("OPENFANG_ERROR", e.message, null) }
-                        }
-                    }.start()
-                }
-                    Thread {
-                        try {
-                            bootstrapManager.installBionicBypass()
-                            runOnUiThread { result.success(true) }
-                        } catch (e: Exception) {
-                            runOnUiThread { result.error("BYPASS_ERROR", e.message, null) }
-                        }
-                    }.start()
-                }
-                "writeResolv" -> {
-                    Thread {
-                        try {
                             bootstrapManager.writeResolvConf()
                             runOnUiThread { result.success(true) }
                         } catch (e: Exception) {
