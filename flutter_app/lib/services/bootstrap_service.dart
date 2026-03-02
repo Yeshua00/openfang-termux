@@ -151,7 +151,7 @@ class BootstrapService {
         message: 'Installing base packages...',
       ));
       // ca-certificates: HTTPS for npm/git
-      // git: openclaw has git deps (@whiskeysockets/libsignal-node)
+      // git: openfang has git deps (@whiskeysockets/libsignal-node)
       // python3, make, g++: node-gyp needs these to compile native addons
       //   (npm's bundled node-gyp runs as a JS module, not a spawned process,
       //    so proot-compat.js spawn mock can't intercept it)
@@ -221,7 +221,7 @@ class BootstrapService {
       ));
       // node-wrapper.js patches broken proot syscalls before loading npm.
       // /usr/local/bin is on PATH, so node finds the tarball's npm.
-      const wrapper = '/root/.openclaw/node-wrapper.js';
+      const wrapper = '/root/.openfang/node-wrapper.js';
       const nodeRun = 'node $wrapper';
       // npm from nodejs.org tarball is at /usr/local/lib/node_modules/npm
       const npmCli = '/usr/local/lib/node_modules/npm/bin/npm-cli.js';
@@ -241,9 +241,25 @@ class BootstrapService {
         progress: 0.0,
         message: 'Installing OpenFang (this may take a few minutes)...',
       ));
-      // Install openclaw — fork/exec works now with our Termux-matching proot.
+      // Install OpenFang from prebuilt binary in assets
+      await NativeBridge.installOpenFang();
+
+      _updateSetupNotification('Verifying OpenFang...', progress: 92);
+      onProgress(const SetupState(
+        step: SetupStep.installingOpenFang,
+        progress: 0.7,
+        message: 'Verifying OpenFang...',
+      ));
+      await NativeBridge.runInProot('openfang --version || echo openfang_installed');
+      _updateSetupNotification('Installing OpenFang...', progress: 82);
+      onProgress(const SetupState(
+        step: SetupStep.installingOpenFang,
+        progress: 0.0,
+        message: 'Installing OpenFang (this may take a few minutes)...',
+      ));
+      // Install openfang — fork/exec works now with our Termux-matching proot.
       await NativeBridge.runInProot(
-        '$nodeRun $npmCli install -g openclaw',
+        '$nodeRun $npmCli install -g openfang',
         timeout: 1800,
       );
 
@@ -256,7 +272,7 @@ class BootstrapService {
       // npm global install creates symlinks for bin entries, but symlinks
       // can fail silently in proot. Create shell wrappers from Java side
       // (reads package.json directly from rootfs filesystem — no escaping).
-      await NativeBridge.createBinWrappers('openclaw');
+      await NativeBridge.createBinWrappers('openfang');
 
       _updateSetupNotification('Verifying OpenFang...', progress: 96);
       onProgress(const SetupState(
@@ -264,7 +280,7 @@ class BootstrapService {
         progress: 0.9,
         message: 'Verifying OpenFang...',
       ));
-      await NativeBridge.runInProot('openclaw --version || echo openclaw_installed');
+      await NativeBridge.runInProot('openfang --version || echo openfang_installed');
       onProgress(const SetupState(
         step: SetupStep.installingOpenFang,
         progress: 1.0,

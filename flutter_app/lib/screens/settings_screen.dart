@@ -159,7 +159,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: const Text('OpenFang'),
-                  subtitle: Text(_status['openclawInstalled'] == true
+                  subtitle: Text(_status['openfangInstalled'] == true
                       ? 'Installed'
                       : 'Not installed'),
                   leading: const Icon(Icons.cloud),
@@ -208,7 +208,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: const Text('GitHub'),
-                  subtitle: const Text('mithun50/openclaw-termux'),
+                  subtitle: const Text('mithun50/openfang-termux'),
                   leading: const Icon(Icons.code),
                   trailing: const Icon(Icons.open_in_new, size: 18),
                   onTap: () => launchUrl(

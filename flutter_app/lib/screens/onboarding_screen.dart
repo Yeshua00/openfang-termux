@@ -11,7 +11,7 @@ import '../services/preferences_service.dart';
 import '../widgets/terminal_toolbar.dart';
 import 'dashboard_screen.dart';
 
-/// Runs `openclaw onboard` in a terminal so the user can configure
+/// Runs `openfang onboard` in a terminal so the user can configure
 /// API keys and select loopback binding. Shown after first-time setup
 /// and accessible from the dashboard for re-configuration.
 class OnboardingScreen extends StatefulWidget {
@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
       // Replace the login shell with a command that runs onboarding.
       // buildProotArgs ends with [..., '/bin/bash', '-l']
-      // Replace with [..., '/bin/bash', '-lc', 'openclaw onboard']
+      // Replace with [..., '/bin/bash', '-lc', 'openfang onboard']
 
       final onboardingArgs = List<String>.from(args);
       onboardingArgs.removeLast(); // remove '-l'
@@ -92,7 +92,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         'echo "Configure your API keys and binding settings." && '
         'echo "TIP: Select Loopback (127.0.0.1) when asked for binding!" && '
         'echo "" && '
-        'openclaw onboard; '
+        'openfang onboard; '
         'echo "" && echo "Onboarding complete! You can close this screen."',
       ]);
 

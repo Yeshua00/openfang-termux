@@ -79,7 +79,7 @@ class GatewayService {
     });
   }
 
-  /// Patch /root/.openclaw/openclaw.json to clear denyCommands and set
+  /// Patch /root/.openfang/openfang.json to clear denyCommands and set
   /// allowCommands for all node capabilities. This is the config file the
   /// gateway actually reads (not a separate gateway.json).
   Future<void> _writeNodeAllowConfig() async {
@@ -92,12 +92,12 @@ class GatewayService {
       'sensor.read', 'sensor.list',
       'haptic.vibrate',
     ];
-    // Use a Node.js one-liner to safely merge into existing openclaw.json
+    // Use a Node.js one-liner to safely merge into existing openfang.json
     // without clobbering other settings (API keys, onboarding config, etc.)
     final allowJson = jsonEncode(allowCommands);
     final script = '''
 const fs = require("fs");
-const p = "/root/.openclaw/openclaw.json";
+const p = "/root/.openfang/openfang.json";
 let c = {};
 try { c = JSON.parse(fs.readFileSync(p, "utf8")); } catch {}
 if (!c.gateway) c.gateway = {};

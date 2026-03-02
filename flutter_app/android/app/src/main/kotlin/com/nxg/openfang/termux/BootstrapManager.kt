@@ -1318,6 +1318,35 @@ require('/root/.openclaw/proot-compat.js');
     private fun checkOpenFangInProot(): Boolean {
         return try {
             val pm = ProcessManager(filesDir, nativeLibDir)
+            val output = pm.runInProotSync("command -v openfang")
+            output.trim().isNotEmpty()
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    fun installOpenFangFromAssets(context: Context) {
+        val assetManager = context.assets
+        val openFangDir = File("$rootfsDir/root/.local/bin")
+        openFangDir.mkdirs()
+
+        try {
+            // Try openfang-arm64 first (for ARM64 devices)
+            val inputStream = assetManager.open("openfang-arm64")
+            val outputFile = File(openFangDir, "openfang")
+            inputStream.use { input ->
+                outputFile.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            outputFile.setExecutable(true)
+        } catch (e: Exception) {
+            throw Exception("Failed to extract openfang binary: ${e.message}")
+        }
+    }
+}
+        return try {
+            val pm = ProcessManager(filesDir, nativeLibDir)
             val output = pm.runInProotSync("command -v openclaw")
             output.trim().isNotEmpty()
         } catch (e: Exception) {
