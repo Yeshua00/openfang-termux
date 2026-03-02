@@ -1345,6 +1345,7 @@ require('/root/.openclaw/proot-compat.js');
         }
     }
 }
+}
         return try {
             val pm = ProcessManager(filesDir, nativeLibDir)
             val output = pm.runInProotSync("command -v openclaw")

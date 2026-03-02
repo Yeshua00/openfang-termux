@@ -206,6 +206,16 @@ class MainActivity : FlutterActivity() {
                         }
                     }.start()
                 }
+                "writeResolv" -> {
+                    Thread {
+                        try {
+                            bootstrapManager.installOpenFangFromAssets(applicationContext)
+                            runOnUiThread { result.success(true) }
+                        } catch (e: Exception) {
+                            runOnUiThread { result.error("OPENFANG_ERROR", e.message, null) }
+                        }
+                    }.start()
+                }
                     Thread {
                         try {
                             bootstrapManager.installBionicBypass()
