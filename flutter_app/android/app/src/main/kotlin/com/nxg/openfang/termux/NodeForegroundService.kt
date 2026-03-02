@@ -75,7 +75,7 @@ class NodeForegroundService : Service() {
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK,
-            "OpenClaw::NodeWakeLock"
+            "OpenFang::NodeWakeLock"
         )
         wakeLock?.acquire(24 * 60 * 60 * 1000L) // 24 hours max
     }
@@ -91,10 +91,10 @@ class NodeForegroundService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "OpenClawX Node",
+                "OpenFangX Node",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Keeps the OpenClawX Node connected in the background"
+                description = "Keeps the OpenFangX Node connected in the background"
             }
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(channel)
@@ -115,7 +115,7 @@ class NodeForegroundService : Service() {
             Notification.Builder(this)
         }
 
-        builder.setContentTitle("OpenClawX Node")
+        builder.setContentTitle("OpenFangX Node")
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_menu_compass)
             .setContentIntent(pendingIntent)
