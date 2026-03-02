@@ -1,4 +1,4 @@
-package com.nxg.openclawproot
+package com.openfang.termux
 
 import android.app.Notification
 import android.app.NotificationChannel

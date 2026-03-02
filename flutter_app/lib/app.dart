@@ -34,8 +34,9 @@ class AppColors {
   static const Color mutedText = Color(0xFF6B7280);
 }
 
-class OpenClawApp extends StatelessWidget {
-  const OpenClawApp({super.key});
+class OpenFangApp extends StatelessWidget {
+  const OpenFangApp({super.key});
+  const OpenFangApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class OpenClawApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'OpenClaw',
+        title: 'OpenFang',
         debugShowCheckedModeBanner: false,
         theme: _buildLightTheme(),
         darkTheme: _buildDarkTheme(),

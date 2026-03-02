@@ -88,7 +88,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       onboardingArgs.removeLast(); // remove '/bin/bash'
       onboardingArgs.addAll([
         '/bin/bash', '-lc',
-        'echo "=== OpenClaw Onboarding ===" && '
+        'echo "=== OpenFang Onboarding ===" && '
         'echo "Configure your API keys and binding settings." && '
         'echo "TIP: Select Loopback (127.0.0.1) when asked for binding!" && '
         'echo "" && '
@@ -363,7 +363,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OpenClaw Onboarding'),
+        title: const Text('OpenFang Onboarding'),
         leading: widget.isFirstRun
             ? null // no back button during first-run
             : IconButton(

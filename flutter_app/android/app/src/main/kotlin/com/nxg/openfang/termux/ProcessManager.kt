@@ -1,4 +1,4 @@
-package com.nxg.openclawproot
+package com.openfang.termux
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

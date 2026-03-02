@@ -34,7 +34,7 @@ def hasKeystore = keystoreProperties.containsKey('storeFile') &&
     file(keystoreProperties['storeFile']).exists()
 
 android {
-    namespace = "com.nxg.openclawproot"
+    namespace = "com.openfang.termux"
     compileSdk = 36
     ndkVersion = "27.0.12077973"
 

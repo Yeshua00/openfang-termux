@@ -158,7 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   leading: const Icon(Icons.code),
                 ),
                 ListTile(
-                  title: const Text('OpenClaw'),
+                  title: const Text('OpenFang'),
                   subtitle: Text(_status['openclawInstalled'] == true
                       ? 'Installed'
                       : 'Not installed'),
@@ -194,7 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const Divider(),
                 _sectionHeader(theme, 'ABOUT'),
                 const ListTile(
-                  title: Text('OpenClaw'),
+                  title: Text('OpenFang'),
                   subtitle: Text(
                     'AI Gateway for Android\nVersion ${AppConstants.version}',
                   ),

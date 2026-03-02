@@ -1,14 +1,14 @@
 class AppConstants {
-  static const String appName = 'OpenClaw';
+  static const String appName = 'OpenFang';
   static const String version = '1.7.1';
-  static const String packageName = 'com.nxg.openclawproot';
+  static const String packageName = 'com.openfang.termux';
 
   /// Matches ANSI escape sequences (e.g. color codes in terminal output).
   static final ansiEscape = RegExp(r'\x1b\[[0-9;]*[a-zA-Z]');
 
   static const String authorName = 'Mithun Gowda B';
   static const String authorEmail = 'mithungowda.b7411@gmail.com';
-  static const String githubUrl = 'https://github.com/mithun50/openclaw-termux';
+  static const String githubUrl = 'https://github.com/RightNow-AI/openfang-termux';
   static const String license = 'MIT';
 
   // NextGenX
@@ -57,8 +57,8 @@ class AppConstants {
   static const String nodeRole = 'node';
   static const int pairingTimeoutMs = 300000;
 
-  static const String channelName = 'com.nxg.openclawproot/native';
-  static const String eventChannelName = 'com.nxg.openclawproot/gateway_logs';
+  static const String channelName = 'com.openfang.termux/native';
+  static const String eventChannelName = 'com.openfang.termux/gateway_logs';
 
   static String getRootfsUrl(String arch) {
     switch (arch) {

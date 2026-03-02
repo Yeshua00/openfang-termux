@@ -234,12 +234,12 @@ class BootstrapService {
         message: 'Node.js installed',
       ));
 
-      // Step 4: Install OpenClaw (80-98%)
-      _updateSetupNotification('Installing OpenClaw...', progress: 82);
+      // Step 4: Install OpenFang (80-98%)
+      _updateSetupNotification('Installing OpenFang...', progress: 82);
       onProgress(const SetupState(
-        step: SetupStep.installingOpenClaw,
+        step: SetupStep.installingOpenFang,
         progress: 0.0,
-        message: 'Installing OpenClaw (this may take a few minutes)...',
+        message: 'Installing OpenFang (this may take a few minutes)...',
       ));
       // Install openclaw — fork/exec works now with our Termux-matching proot.
       await NativeBridge.runInProot(
@@ -249,7 +249,7 @@ class BootstrapService {
 
       _updateSetupNotification('Creating bin wrappers...', progress: 92);
       onProgress(const SetupState(
-        step: SetupStep.installingOpenClaw,
+        step: SetupStep.installingOpenFang,
         progress: 0.7,
         message: 'Creating bin wrappers...',
       ));
@@ -258,17 +258,17 @@ class BootstrapService {
       // (reads package.json directly from rootfs filesystem — no escaping).
       await NativeBridge.createBinWrappers('openclaw');
 
-      _updateSetupNotification('Verifying OpenClaw...', progress: 96);
+      _updateSetupNotification('Verifying OpenFang...', progress: 96);
       onProgress(const SetupState(
-        step: SetupStep.installingOpenClaw,
+        step: SetupStep.installingOpenFang,
         progress: 0.9,
-        message: 'Verifying OpenClaw...',
+        message: 'Verifying OpenFang...',
       ));
       await NativeBridge.runInProot('openclaw --version || echo openclaw_installed');
       onProgress(const SetupState(
-        step: SetupStep.installingOpenClaw,
+        step: SetupStep.installingOpenFang,
         progress: 1.0,
-        message: 'OpenClaw installed',
+        message: 'OpenFang installed',
       ));
 
       // Step 5: Bionic Bypass already installed (before node verification)

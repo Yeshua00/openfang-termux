@@ -22,7 +22,7 @@ class DashboardScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OpenClaw'),
+        title: const Text('OpenFang'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -52,7 +52,7 @@ class DashboardScreen extends StatelessWidget {
             ),
             StatusCard(
               title: 'Terminal',
-              subtitle: 'Open Ubuntu shell with OpenClaw',
+              subtitle: 'Open Ubuntu shell with OpenFang',
               icon: Icons.terminal,
               trailing: const Icon(Icons.chevron_right),
               onTap: () => Navigator.of(context).push(
@@ -64,7 +64,7 @@ class DashboardScreen extends StatelessWidget {
                 return StatusCard(
                   title: 'Web Dashboard',
                   subtitle: provider.state.isRunning
-                      ? 'Open OpenClaw dashboard in browser'
+                      ? 'Open OpenFang dashboard in browser'
                       : 'Start gateway first',
                   icon: Icons.dashboard,
                   trailing: const Icon(Icons.chevron_right),
@@ -130,7 +130,7 @@ class DashboardScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'OpenClaw v${AppConstants.version}',
+                    'OpenFang v${AppConstants.version}',
                     style: theme.textTheme.bodySmall?.copyWith(
                       color: theme.colorScheme.onSurfaceVariant,
                     ),
