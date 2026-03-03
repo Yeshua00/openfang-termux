@@ -107,24 +107,6 @@ class DashboardScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (_) => const LogsScreen()),
               ),
             ),
-            Consumer<NodeProvider>(
-              builder: (context, nodeProvider, _) {
-                final nodeState = nodeProvider.state;
-                return StatusCard(
-                  title: 'Node',
-                  subtitle: nodeState.isPaired
-                      ? 'Connected to gateway'
-                      : nodeState.isDisabled
-                          ? 'Device capabilities for AI'
-                          : nodeState.statusText,
-                  icon: Icons.devices,
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const NodeScreen()),
-                  ),
-                );
-              },
-            ),
             const SizedBox(height: 24),
             Center(
               child: Column(

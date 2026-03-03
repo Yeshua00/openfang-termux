@@ -19,8 +19,8 @@ class AppConstants {
   static const String playStoreUrl = 'https://play.google.com/store/apps/dev?id=8262374975871504599';
 
   static const String gatewayHost = '127.0.0.1';
-  static const int gatewayPort = 18789;
-  static const String gatewayUrl = 'http://$gatewayHost:$gatewayPort';
+  static const int gatewayPort = 4200;
+  static const String gatewayUrl = 'http://$gatewayHost:$gatewayPort/#token=';
 
   static const String ubuntuRootfsUrl =
       'https://cdimage.ubuntu.com/ubuntu-base/releases/24.04/release/ubuntu-base-24.04.3-base-';

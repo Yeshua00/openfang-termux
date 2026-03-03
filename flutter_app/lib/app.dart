@@ -3,6 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'providers/setup_provider.dart';
 import 'providers/gateway_provider.dart';
+import 'screens/splash_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'providers/setup_provider.dart';
+import 'providers/gateway_provider.dart';
 import 'providers/node_provider.dart';
 import 'screens/splash_screen.dart';
 

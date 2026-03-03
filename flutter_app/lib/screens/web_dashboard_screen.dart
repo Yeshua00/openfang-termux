@@ -44,14 +44,8 @@ class _WebDashboardScreenState extends State<WebDashboardScreen> {
   }
 
   Future<void> _loadUrl() async {
-    var url = widget.url;
-    if (url == null || url.isEmpty) {
-      // Fallback: load saved token URL from preferences
-      final prefs = PreferencesService();
-      await prefs.init();
-      url = prefs.dashboardUrl;
-    }
-    _controller.loadRequest(Uri.parse(url ?? AppConstants.gatewayUrl));
+    // Force localhost:4200 for OpenFang dashboard
+    _controller.loadRequest(Uri.parse('http://localhost:4200'));
   }
 
   @override
