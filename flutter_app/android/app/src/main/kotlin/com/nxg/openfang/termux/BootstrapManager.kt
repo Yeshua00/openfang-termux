@@ -9,10 +9,6 @@ import java.io.FileOutputStream
 import java.io.InputStream
 import java.util.zip.GZIPInputStream
 import org.apache.commons.compress.archivers.ar.ArArchiveInputStream
-import java.util.zip.GZIPInputStream
-import java.util.zip.GZIPInputStream
-import java.net.URL
-import org.apache.commons.compress.archivers.ar.ArArchiveInputStream
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
 import org.apache.commons.compress.compressors.xz.XZCompressorInputStream
@@ -1333,30 +1329,38 @@ require('/root/.openclaw/proot-compat.js');
         val openFangDir = File("$rootfsDir/root/.local/bin")
         openFangDir.mkdirs()
 
-        // Download OpenFang binary from GitHub releases
+        // Download OpenFang binary via curl in proot
         val outputFile = File(openFangDir, "openfang")
         val downloadUrl = "https://github.com/RightNow-AI/openfang/releases/latest/download/openfang-linux-arm64"
 
         try {
-            val url = java.net.URL(downloadUrl)
-            val connection = url.openConnection() as java.net.HttpURLConnection
-            connection.requestMethod = "GET"
-            connection.connectTimeout = 60000
-            connection.readTimeout = 60000
-            connection.connect()
-
-            if (connection.responseCode == 200) {
-                connection.inputStream.use { input ->
-                    outputFile.outputStream().use { output ->
-                        input.copyTo(output)
-                    }
-                }
-                outputFile.setExecutable(true)
-            } else {
-                throw Exception("Download failed: HTTP ${connection.responseCode}")
+            // Use Runtime.exec to run curl to download
+            val process = Runtime.getRuntime().exec(arrayOf("curl", "-fsSL", "-o", outputFile.absolutePath, downloadUrl))
+            val exitCode = process.waitFor()
+            if (exitCode != 0) {
+                throw Exception("curl failed with exit code $exitCode")
             }
+            outputFile.setExecutable(true)
         } catch (e: Exception) {
             throw Exception("Failed to download openfang binary: ${e.message}")
+        }
+    }
+        val assetManager = context.assets
+        val openFangDir = File("$rootfsDir/root/.local/bin")
+        openFangDir.mkdirs()
+
+        try {
+            // Try openfang-arm64 first (for ARM64 devices)
+            val inputStream = assetManager.open("openfang-arm64")
+            val outputFile = File(openFangDir, "openfang")
+            inputStream.use { input ->
+                outputFile.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            outputFile.setExecutable(true)
+        } catch (e: Exception) {
+            throw Exception("Failed to extract openfang binary: ${e.message}")
         }
     }
 }
