@@ -8,6 +8,8 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.InputStream
 import java.net.HttpURLConnection
+import java.net.URL as JUrl
+import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URL
 import java.util.zip.GZIPInputStream
@@ -1335,7 +1337,7 @@ require('/root/.openclaw/proot-compat.js');
         val downloadUrl = "https://github.com/RightNow-AI/openfang/releases/latest/download/openfang-linux-arm64"
         
         try {
-            val url = URL(downloadUrl)
+            val url = JUrl(downloadUrl)
             val connection = url.openConnection() as HttpURLConnection
             connection.requestMethod = "GET"
             connection.connectTimeout = 30000
