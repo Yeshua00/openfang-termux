@@ -6,7 +6,9 @@ import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
+import java.io.InputStream
 import java.net.HttpURLConnection
+import java.net.URL
 import java.net.URL
 import java.util.zip.GZIPInputStream
 import org.apache.commons.compress.archivers.ar.ArArchiveInputStream
