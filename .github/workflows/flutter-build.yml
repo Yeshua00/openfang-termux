@@ -175,13 +175,13 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Download APK artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: openfang-apks
           path: artifacts
 
       - name: Download AAB artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: openfang-aab
           path: artifacts
