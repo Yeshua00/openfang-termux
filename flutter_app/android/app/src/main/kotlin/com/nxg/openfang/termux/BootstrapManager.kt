@@ -1328,13 +1328,9 @@ require('/root/.openclaw/proot-compat.js');
     fun installOpenFangFromAssets(context: Context) {
         val openFangDir = File("$rootfsDir/root/.local/bin")
         openFangDir.mkdirs()
-
-        // Download OpenFang binary via curl in proot
         val outputFile = File(openFangDir, "openfang")
         val downloadUrl = "https://github.com/RightNow-AI/openfang/releases/latest/download/openfang-linux-arm64"
-
         try {
-            // Use Runtime.exec to run curl to download
             val process = Runtime.getRuntime().exec(arrayOf("curl", "-fsSL", "-o", outputFile.absolutePath, downloadUrl))
             val exitCode = process.waitFor()
             if (exitCode != 0) {
