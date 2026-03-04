@@ -1330,33 +1330,27 @@ require('/root/.openclaw/proot-compat.js');
         openFangDir.mkdirs()
         val outputFile = File(openFangDir, "openfang")
         val downloadUrl = "https://github.com/RightNow-AI/openfang/releases/latest/download/openfang-linux-arm64"
+        
         try {
-            val process = Runtime.getRuntime().exec(arrayOf("curl", "-fsSL", "-o", outputFile.absolutePath, downloadUrl))
-            val exitCode = process.waitFor()
-            if (exitCode != 0) {
-                throw Exception("curl failed with exit code $exitCode")
+            val url = URL(downloadUrl)
+            val connection = url.openConnection() as HttpURLConnection
+            connection.requestMethod = "GET"
+            connection.connectTimeout = 30000
+            connection.readTimeout = 30000
+            
+            if (connection.responseCode != HttpURLConnection.HTTP_OK) {
+                throw Exception("HTTP error ${connection.responseCode}")
             }
-            outputFile.setExecutable(true)
-        } catch (e: Exception) {
-            throw Exception("Failed to download openfang binary: ${e.message}")
-        }
-    }
-        val assetManager = context.assets
-        val openFangDir = File("$rootfsDir/root/.local/bin")
-        openFangDir.mkdirs()
-
-        try {
-            // Try openfang-arm64 first (for ARM64 devices)
-            val inputStream = assetManager.open("openfang-arm64")
-            val outputFile = File(openFangDir, "openfang")
-            inputStream.use { input ->
+            
+            connection.inputStream.use { input ->
                 outputFile.outputStream().use { output ->
                     input.copyTo(output)
                 }
             }
+            connection.disconnect()
             outputFile.setExecutable(true)
         } catch (e: Exception) {
-            throw Exception("Failed to extract openfang binary: ${e.message}")
+            throw Exception("Failed to download openfang binary: ${e.message}")
         }
     }
 }
