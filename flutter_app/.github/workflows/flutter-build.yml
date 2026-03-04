@@ -32,6 +32,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-flutter-
 
+      - name: Fix security vulnerabilities
+        working-directory: flutter_app
+        run: npm audit fix --audit-level=moderate
+
       - name: Install Flutter dependencies
         working-directory: flutter_app
         run: flutter pub get
