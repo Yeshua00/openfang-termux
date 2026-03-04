@@ -9,9 +9,6 @@ import java.io.FileOutputStream
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.util.zip.GZIPInputStream
-import java.net.HttpURLConnection
-import java.util.zip.GZIPInputStream
-import java.util.zip.GZIPInputStream
 import org.apache.commons.compress.archivers.ar.ArArchiveInputStream
 import org.apache.commons.compress.archivers.tar.TarArchiveEntry
 import org.apache.commons.compress.archivers.tar.TarArchiveInputStream
