@@ -1,14 +1,14 @@
 class AppConstants {
-  static const String appName = 'OpenClaw';
+  static const String appName = 'OpenFang';
   static const String version = '1.8.2';
-  static const String packageName = 'com.nxg.openclawproot';
+  static const String packageName = 'com.openfang.termux';
 
   /// Matches ANSI escape sequences (e.g. color codes in terminal output).
   static final ansiEscape = RegExp(r'\x1b\[[0-9;]*[a-zA-Z]');
 
   static const String authorName = 'Mithun Gowda B';
   static const String authorEmail = 'mithungowda.b7411@gmail.com';
-  static const String githubUrl = 'https://github.com/mithun50/openclaw-termux';
+  static const String githubUrl = 'https://github.com/mithun50/OpenFang-termux';
   static const String license = 'MIT';
 
   // NextGenX
@@ -19,7 +19,7 @@ class AppConstants {
   static const String playStoreUrl = 'https://play.google.com/store/apps/dev?id=8262374975871504599';
 
   static const String gatewayHost = '127.0.0.1';
-  static const int gatewayPort = 18789;
+  static const int gatewayPort = 4200;
   static const String gatewayUrl = 'http://$gatewayHost:$gatewayPort';
 
   static const String ubuntuRootfsUrl =
@@ -57,8 +57,9 @@ class AppConstants {
   static const String nodeRole = 'node';
   static const int pairingTimeoutMs = 300000;
 
-  static const String channelName = 'com.nxg.openclawproot/native';
-  static const String eventChannelName = 'com.nxg.openclawproot/gateway_logs';
+  static const String channelName = 'com.openfang.termux/native';
+  static const String eventChannelName = 'com.openfang.termux/gateway_logs';
+  static const String eventChannelName = 'com.nxg.OpenFangproot/gateway_logs';
 
   static String getRootfsUrl(String arch) {
     switch (arch) {

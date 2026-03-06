@@ -1,4 +1,4 @@
-package com.nxg.openclawproot
+package com.openfang.termux
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -17,7 +17,7 @@ import java.io.InputStreamReader
 
 class GatewayService : Service() {
     companion object {
-        const val CHANNEL_ID = "openclaw_gateway"
+        const val CHANNEL_ID = "OpenFang_gateway"
         const val NOTIFICATION_ID = 1
         var isRunning = false
             private set
@@ -122,7 +122,7 @@ class GatewayService : Service() {
                     }
                 } catch (_: Exception) {}
 
-                gatewayProcess = pm.startProotProcess("openclaw gateway --verbose")
+                gatewayProcess = pm.startProotProcess("~/.openfang/bin/openfang start")
                 updateNotificationRunning()
                 emitLog("Gateway started")
                 startUptimeTicker()
@@ -228,7 +228,7 @@ class GatewayService : Service() {
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(
             PowerManager.PARTIAL_WAKE_LOCK,
-            "OpenClaw::GatewayWakeLock"
+            "OpenFang::GatewayWakeLock"
         )
         wakeLock?.acquire(24 * 60 * 60 * 1000L) // 24 hours max
     }
@@ -244,10 +244,10 @@ class GatewayService : Service() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 CHANNEL_ID,
-                "OpenClaw Gateway",
+                "OpenFang Gateway",
                 NotificationManager.IMPORTANCE_LOW
             ).apply {
-                description = "Keeps the OpenClaw gateway running in the background"
+                description = "Keeps the OpenFang gateway running in the background"
             }
             val manager = getSystemService(NotificationManager::class.java)
             manager.createNotificationChannel(channel)
@@ -268,7 +268,7 @@ class GatewayService : Service() {
             Notification.Builder(this)
         }
 
-        builder.setContentTitle("OpenClaw Gateway")
+        builder.setContentTitle("OpenFang Gateway")
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_media_play)
             .setContentIntent(pendingIntent)

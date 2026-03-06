@@ -1,4 +1,4 @@
-package com.nxg.openclawproot
+package com.openfang.termux
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -32,8 +32,8 @@ import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "com.nxg.openclawproot/native"
-    private val EVENT_CHANNEL = "com.nxg.openclawproot/gateway_logs"
+    private val CHANNEL = "com.openfang.termux/native"
+    private val EVENT_CHANNEL = "com.openfang.termux/gateway_logs"
 
     private lateinit var bootstrapManager: BootstrapManager
     private lateinit var processManager: ProcessManager
@@ -586,7 +586,7 @@ class MainActivity : FlutterActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 URL_CHANNEL_ID,
-                "OpenClaw URLs",
+                "OpenFang URLs",
                 NotificationManager.IMPORTANCE_HIGH
             ).apply {
                 description = "Notifications for detected URLs"
@@ -666,7 +666,7 @@ class MainActivity : FlutterActivity() {
     }
 
     companion object {
-        const val URL_CHANNEL_ID = "openclaw_urls"
+        const val URL_CHANNEL_ID = "OpenFang_urls"
         const val NOTIFICATION_PERMISSION_REQUEST = 1001
         const val SCREEN_CAPTURE_REQUEST = 1002
         const val STORAGE_PERMISSION_REQUEST = 1003

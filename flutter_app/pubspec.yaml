@@ -1,5 +1,5 @@
-name: openclaw
-description: OpenClaw AI Gateway for Android - standalone, no Termux required.
+name: OpenFang
+description: OpenFang AI Gateway for Android - standalone, no Termux required.
 publish_to: 'none'
 version: 1.8.3+14
 

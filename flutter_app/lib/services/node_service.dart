@@ -197,7 +197,7 @@ class NodeService {
       'maxProtocol': 3,
       'client': {
         'id': clientId,
-        'displayName': 'OpenClawX Node',
+        'displayName': 'OpenFangX Node',
         'version': AppConstants.version,
         'platform': 'android',
         'deviceFamily': 'Android',
@@ -315,7 +315,7 @@ class NodeService {
         if (isLocal) {
           _log('[NODE] Local gateway detected, auto-approving...');
           try {
-            await NativeBridge.runInProot('openclaw nodes approve $code');
+            await NativeBridge.runInProot('OpenFang nodes approve $code');
             _log('[NODE] Auto-approve command sent');
             await Future.delayed(const Duration(milliseconds: 500));
             await _ws.disconnect();

@@ -183,8 +183,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   leading: const Icon(Icons.code),
                 ),
                 ListTile(
-                  title: const Text('OpenClaw'),
-                  subtitle: Text(_status['openclawInstalled'] == true
+                  title: const Text('OpenFang'),
+                  subtitle: Text(_status['OpenFangInstalled'] == true
                       ? 'Installed'
                       : 'Not installed'),
                   leading: const Icon(Icons.cloud),
@@ -240,7 +240,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const Divider(),
                 _sectionHeader(theme, 'ABOUT'),
                 const ListTile(
-                  title: Text('OpenClaw'),
+                  title: Text('OpenFang'),
                   subtitle: Text(
                     'AI Gateway for Android\nVersion ${AppConstants.version}',
                   ),
@@ -254,7 +254,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ),
                 ListTile(
                   title: const Text('GitHub'),
-                  subtitle: const Text('mithun50/openclaw-termux'),
+                  subtitle: const Text('mithun50/OpenFang-termux'),
                   leading: const Icon(Icons.code),
                   trailing: const Icon(Icons.open_in_new, size: 18),
                   onTap: () => launchUrl(
@@ -330,20 +330,20 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (!await downloadDir.exists()) {
         await downloadDir.create(recursive: true);
       }
-      return '$sdcard/Download/openclaw-snapshot.json';
+      return '$sdcard/Download/OpenFang-snapshot.json';
     }
     // Fallback to app-private directory
     final dir = await getApplicationDocumentsDirectory();
-    return '${dir.path}/openclaw-snapshot.json';
+    return '${dir.path}/OpenFang-snapshot.json';
   }
 
   Future<void> _exportSnapshot() async {
     try {
-      final openclawJson = await NativeBridge.readRootfsFile('root/.openclaw/openclaw.json');
+      final OpenFangJson = await NativeBridge.readRootfsFile('root/.OpenFang/OpenFang.json');
       final snapshot = {
         'version': AppConstants.version,
         'timestamp': DateTime.now().toIso8601String(),
-        'openclawConfig': openclawJson,
+        'OpenFangConfig': OpenFangJson,
         'dashboardUrl': _prefs.dashboardUrl,
         'autoStart': _prefs.autoStartGateway,
         'nodeEnabled': _prefs.nodeEnabled,
@@ -381,10 +381,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       final content = await file.readAsString();
       final snapshot = jsonDecode(content) as Map<String, dynamic>;
 
-      // Restore openclaw.json into rootfs
-      final openclawConfig = snapshot['openclawConfig'] as String?;
-      if (openclawConfig != null) {
-        await NativeBridge.writeRootfsFile('root/.openclaw/openclaw.json', openclawConfig);
+      // Restore OpenFang.json into rootfs
+      final OpenFangConfig = snapshot['OpenFangConfig'] as String?;
+      if (OpenFangConfig != null) {
+        await NativeBridge.writeRootfsFile('root/.OpenFang/OpenFang.json', OpenFangConfig);
       }
 
       // Restore preferences
