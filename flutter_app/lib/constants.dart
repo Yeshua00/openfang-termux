@@ -59,7 +59,7 @@ class AppConstants {
 
   static const String channelName = 'com.openfang.termux/native';
   static const String eventChannelName = 'com.openfang.termux/gateway_logs';
-  static const String eventChannelName = 'com.nxg.OpenFangproot/gateway_logs';
+
 
   static String getRootfsUrl(String arch) {
     switch (arch) {
