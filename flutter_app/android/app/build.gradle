@@ -48,7 +48,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.openfang.termux"
+        applicationId = "com.nxg.OpenFangproot"
         minSdk = 29
         targetSdk = 36
         versionCode = flutterVersionCode.toInteger()
