@@ -1,7 +1,7 @@
 class AppConstants {
   static const String appName = 'OpenFang';
   static const String version = '1.8.2';
-  static const String packageName = 'com.nxg.OpenFangproot';
+  static const String packageName = 'com.openfang.termux';
 
   /// Matches ANSI escape sequences (e.g. color codes in terminal output).
   static final ansiEscape = RegExp(r'\x1b\[[0-9;]*[a-zA-Z]');
@@ -57,8 +57,8 @@ class AppConstants {
   static const String nodeRole = 'node';
   static const int pairingTimeoutMs = 300000;
 
-  static const String channelName = 'com.nxg.OpenFangproot/native';
-  static const String eventChannelName = 'com.nxg.OpenFangproot/gateway_logs';
+  static const String channelName = 'com.openfang.termux/native';
+  static const String eventChannelName = 'com.openfang.termux/gateway_logs';
 
   static String getRootfsUrl(String arch) {
     switch (arch) {

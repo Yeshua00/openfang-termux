@@ -5,7 +5,7 @@ import '../../models/node_frame.dart';
 import 'capability_handler.dart';
 
 class SensorCapability extends CapabilityHandler {
-  static const _channel = MethodChannel('com.nxg.OpenFangproot/native');
+  static const _channel = MethodChannel('com.openfang.termux/native');
 
   @override
   String get name => 'sensor';
