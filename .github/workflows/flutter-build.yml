@@ -101,6 +101,10 @@ jobs:
             done
           done
 
+      - name: Clean Flutter build
+YY|        working-directory: flutter_app
+HY|        run: flutter clean
+
       - name: Get Flutter dependencies
         working-directory: flutter_app
         run: flutter pub get
