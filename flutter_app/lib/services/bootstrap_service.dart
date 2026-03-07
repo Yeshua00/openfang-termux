@@ -277,17 +277,6 @@ class BootstrapService {
         progress: 1.0,
         message: 'OpenFang installed',
       ));
-      _updateSetupNotification('Installing OpenFang...', progress: 82);
-      onProgress(const SetupState(
-        step: SetupStep.installingOpenFang,
-        progress: 0.0,
-        message: 'Installing OpenFang (this may take a few minutes)...',
-      ));
-      // Install OpenFang — fork/exec works now with our Termux-matching proot.
-      await NativeBridge.runInProot(
-        '$nodeRun $npmCli install -g OpenFang',
-        timeout: 1800,
-      );
 
       _updateSetupNotification('Creating bin wrappers...', progress: 92);
       onProgress(const SetupState(
